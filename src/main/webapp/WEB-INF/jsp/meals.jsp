@@ -7,6 +7,8 @@
 <body>
 <jsp:include page="fragments/bodyHeader.jsp"/>
 
+<div class="jumbotron pt-4">
+    <div class="container">
 <section>
     <h3><spring:message code="meal.title"/></h3>
 
@@ -30,9 +32,12 @@
         <button type="submit"><spring:message code="meal.filter"/></button>
     </form>
     <hr>
+    <button class="btn btn-primary" onclick="add()">
+        <span class="fa fa-plus"></span>
     <a href="meals/create"><spring:message code="meal.add"/></a>
+    </button>
     <hr>
-    <table border="1" cellpadding="8" cellspacing="0">
+    <table class="table table-striped" id="datatable">
         <thead>
         <tr>
             <th><spring:message code="meal.dateTime"/></th>
@@ -54,11 +59,13 @@
                 <td>${meal.description}</td>
                 <td>${meal.calories}</td>
                 <td><a href="meals/update?id=${meal.id}"><spring:message code="common.update"/></a></td>
-                <td><a href="meals/delete?id=${meal.id}"><spring:message code="common.delete"/></a></td>
+                <td><a class="delete" id="${meal.id}"><span class="fa fa-remove"></span></a></td>
             </tr>
         </c:forEach>
     </table>
 </section>
+    </div>
+</div>
 <jsp:include page="fragments/footer.jsp"/>
 </body>
 </html>
