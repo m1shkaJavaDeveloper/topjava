@@ -13,6 +13,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+import static ru.javawebinar.topjava.util.UserUtil.DEFAULT_CALORIES_PER_DAY;
+
 @NamedQueries({
         @NamedQuery(name = Meal.ALL_SORTED, query = "SELECT m FROM Meal m WHERE m.user.id=:userId ORDER BY m.dateTime DESC"),
         @NamedQuery(name = Meal.DELETE, query = "DELETE FROM Meal m WHERE m.id=:id AND m.user.id=:userId"),
@@ -53,6 +55,10 @@ public class Meal extends AbstractBaseEntity {
 
     public Meal(LocalDateTime dateTime, String description, int calories) {
         this(null, dateTime, description, calories);
+    }
+
+    public Meal(Integer id, LocalDateTime dateTime, String description){
+        this(id, dateTime, description, DEFAULT_CALORIES_PER_DAY);
     }
 
     public Meal(Integer id, LocalDateTime dateTime, String description, int calories) {
